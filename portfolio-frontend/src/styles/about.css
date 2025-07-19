@@ -1,0 +1,264 @@
+.about-holder{
+    /* background-color: green; */
+    display: flex;
+    /* height: 100vh; */
+    /* border: 1px solid red; */
+}
+.about-container{
+    height: 372vh;
+    width: 100vw;
+    background-color: #0f0f0f;
+    padding: 1rem 0rem;
+    color: var(--text-color);
+}
+/* openin about text */
+
+.openingAbout{
+    width: fit-content;
+    /* background-color: blue; */
+}
+.openingAboutText{
+    height: 50vh;
+    width: 100vw;
+    padding: 2rem 1rem;
+    font-size: 90px;
+    /* background-color: blueviolet; */
+    color: var(--text-color);
+}
+
+/* my information */
+.myInformation{
+    /* background-color: green; */
+    height: 100vh;
+    width: 95vw;
+    position: relative;
+}
+.myinformationText{
+    position: absolute;
+    left: 15%;
+    top: 20%;
+    font-size: var(--text-font);
+    /* color: var(--text-color); */
+    /* background-color:aqua; */
+    height: fit-content;
+    width: 35%;
+    padding: 1rem 2rem;
+}
+.aboutimg-holder{
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    height: 90%;
+    width: 40%;
+    /* background-color: pink; */
+    background-image: url(../images/about.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.myInformationArrow{
+  position: absolute;
+  left: 10%;
+  top: 22%;
+  font-size: var(--text-font);
+  display: inline-block;
+  color: var(--text-color);
+  /* background-color: aqua; */
+}
+/* my skills */
+.mySkills{
+    background-color: #1a1919;
+    height: 90vh;
+    width: 100vw;
+    position: relative;
+}
+.mySkillsText{
+    padding: 2rem 1rem;
+    font-size: 90px;
+    /* background-color: blueviolet; */
+    color: var(--text-color);
+}
+.skillSet{
+    /* background: yellow; */
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+}
+.skill{
+    color: var(--text-color);
+    /* background-color:aqua; */
+    height: fit-content;
+    width: 25%;
+    padding: 1rem 0.5rem;
+}
+.skillHead{
+    font-size: 40px;
+}
+.skillText{
+    font-size: 22px;
+}
+.skillNo{
+    border-bottom: 1px solid var(--text-color);
+    padding: 1rem 0.5rem;
+}
+/* yi */
+.partofYi{
+    /* background-color: rgb(255, 0, 195); */
+    height: 120vh;
+    width: 100vw;
+    position: relative;
+    color: var(--text-color);
+}
+.parrtofYi-headline{
+    height: fit-content;
+    width: 95vw;
+    padding: 2rem 1rem;
+    font-size: 90px;
+    /* background-color: blueviolet; */
+    color: var(--text-color);
+}
+.yiArrow{
+  position: absolute;
+  right: 10%;
+  top: 30%;
+  font-size: var(--text-font);
+  display: inline-block;
+
+}
+.yiText{
+    position: absolute;
+    right: 15%;
+    top: 30%;
+    font-size: var(--text-font);
+    /* color: var(--text-color); */
+    /* background-color:aqua; */
+    height: fit-content;
+    width: 35%;
+    padding: 1rem 2rem;
+}
+.yiImg-holder{
+    position: absolute;
+    left: 5%;
+    top: 20%;
+    height: 90%;
+    width: 40%;
+    /* background-color: pink; */
+    background-image: url(../images/yi-my.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+@media (max-width: 768px) {
+    
+.about-container{
+    height: fit-content;
+    /* background-color: red; */
+    padding: 1rem 0rem;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+}
+/* openin about text */
+
+.openingAbout{
+    width: fit-content;
+    /* background-color: blue; */
+    height: fit-content;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+.openingAboutText{
+    font-size: 50px;
+    height: fit-content;
+    /* background-color: blueviolet; */
+}
+
+/* my information */
+.myInformation{
+    /* background-color: green; */
+    width: 100vw;
+    height: 90vh;
+}
+.myInformationArrow{
+  position: absolute;
+  left: 5%;
+  top:3%;
+  /* background-color: aqua; */
+}
+.myinformationText{
+    left: 2%;
+    top: 4%;
+    font-size: 20px;
+    height: fit-content;
+    width: 100%;
+}
+.aboutimg-holder{
+    right: 5%;
+    top: 42%;
+    height: 50vh;
+    width: 90vw;
+    /* background-color: pink; */
+}
+.mySkills{
+    height: fit-content;
+}
+.mySkillsText{
+    padding: 1rem 1rem;
+    font-size: 80px;
+
+}
+.skill{
+    width: 100%;
+    gap: 10px;
+    padding: 0rem 0.5rem;
+}
+.skillSet{
+
+    display: flex;
+    flex-direction: column;
+}
+.skillHead{
+    font-size: 40px;
+}
+.skillText{
+    width: 90vw;
+    /* background-color: red; */
+    font-size: 20px;
+}
+.skillNo{
+    padding: 1rem 0.5rem;
+}
+.partofYi{
+    /* background-color: rgb(255, 0, 195); */
+    height: 130vh;
+    width: 100vw;
+    position: relative;
+    color: var(--text-color);
+}
+.parrtofYi-headline{
+    width: 100vw;
+    padding: 2rem 1rem;
+    font-size: 80px;
+    /* background-color: blueviolet; */
+    color: var(--text-color);
+}
+.yiArrow{
+  position: absolute;
+  right: 5%;
+  top:25%;
+
+}
+.yiText{
+    position: absolute;
+    right: 0;
+    top: 25%;
+    font-size: 20px;
+    height: fit-content;
+    width: 100%;
+}
+.yiImg-holder{
+    width: 40%;
+    right: 5%;
+    top: 55%;
+    height: 60vh;
+    width: 90vw;
+}
+}

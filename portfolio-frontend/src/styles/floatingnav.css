@@ -1,0 +1,47 @@
+.floating-nav {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #0f0f0f6c;
+  border: 2px solid var(--main-color);
+  display: flex;
+  gap: 2rem;
+  padding: 0.6rem 2rem;
+  border-radius: 1rem;
+  z-index: 999;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  backdrop-filter: blur(8px);
+}
+
+.floating-nav.hidden {
+  opacity: 0.2;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(10px);
+}
+
+.floating-nav.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.floating-nav a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.divider {
+  border-left: 2px solid var(--text-color);
+  height: 1rem;
+  align-self: center;
+}
+
+@media screen and (min-width: 769px) {
+  .floating-nav {
+    display: none;
+  }
+}

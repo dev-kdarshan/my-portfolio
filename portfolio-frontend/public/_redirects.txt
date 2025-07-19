@@ -1,0 +1,159 @@
+const express = require("express");
+const cors = require("cors");
+const axios = require("axios");
+require("dotenv").config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.post("/api/chat", async (req, res) => {
+  const { message } = req.body;
+  const safeMessage = message.replace(/"/g, '\\"'); // prevent quote issues
+  const lower = safeMessage.toLowerCase();
+
+  try {
+    // Handle C, C++, Python knowledge check
+    if (/(does|is)\s+darshan\s+(know|good\s+at)/.test(lower) && /(c\+\+|cpp|python|c)/.test(lower)) {
+      return res.json({
+        intent: "skills",
+        reply: "Yes, Darshan has strong programming knowledge in C, C++, and Python. 💻",
+      });
+    }
+
+    // Step 1: Classify intent
+    const classifyRes = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      {
+        contents: [
+          {
+            role: "user",
+            parts: [
+              {
+                text: `You're Darz-Textonomials, a portfolio chatbot for Darshan Khute.
+
+ONLY respond to messages about Darshan's:
+• Skills
+• Projects
+• Resume
+• Contact Info
+• Education
+• Work
+• Hobbies
+
+DO NOT respond to anything outside this. Politely reject it.
+
+Now, classify this message: "${safeMessage}"
+Respond with just one intent: skills, projects, resume, contact, general.`
+              }
+            ]
+          }
+        ]
+      },
+      { headers: { "Content-Type": "application/json" } }
+    );
+
+    const rawIntent =
+      classifyRes.data.candidates?.[0]?.content?.parts?.[0]?.text
+        ?.trim()
+        .toLowerCase();
+
+    const allowedIntents = ["skills", "projects", "resume", "contact", "general"];
+    const intent = allowedIntents.includes(rawIntent) ? rawIntent : "general";
+
+    // Step 2: Handle general dynamic response using full scope
+    if (intent === "general") {
+      const replyRes = await axios.post(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+        {
+          contents: [
+            {
+              role: "user",
+              parts: [
+                {
+                  text: `
+You are Darz-Textonomials, a smart portfolio assistant for Darshan Khute.
+
+You must strictly respond to queries related to:
+• His education (BTech in Electronics & Telecommunication at KK Wagh College, CGPA 7.78; HSC - 78.17% from KTHM College; SSC - 93.60% from Maratha Highschool)
+• His skills: MERN stack, C, C++, Python, IoT & Embedded Systems
+• His poetry, lyrics, and creative writing
+• His resume, contact details, and projects
+
+Published Poems:
+1. "I just need a brake" in Sunset Hues
+2. "My last crave" in Cotton Candy
+3. Some poems featured in college magazine Pinnacle
+
+Marathi Poems:
+1. lajaleli preet 2023
+2. tujha sahawaas 2023
+
+Hindi Poems:
+1. dilemaas 2024
+2. khamoshi 2024
+
+If someone asks something unrelated (e.g., politics, weather), reply:  
+"I'm here to assist with Darshan's portfolio only 😊"
+
+Now answer this message:  
+"${message}"
+`
+                }
+              ]
+            }
+          ]
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      const reply =
+        replyRes.data.candidates?.[0]?.content?.parts?.[0]?.text ||
+        "🤖 I'm here to assist with Darshan's portfolio only 😊";
+
+      return res.json({ intent: "general", reply });
+    }
+
+    // Step 3: Direct replies for known intents
+    let reply = "";
+    switch (intent) {
+      case "skills":
+        reply = `🚀 Here's what I bring to the table:<br /><br />
+🧠 <strong>Technical Skills</strong><br />
+• <strong>MERN Stack:</strong> MongoDB, Express.js, React.js, Node.js — full-stack development expertise.<br />
+• <strong>Programming:</strong> C, C++, Python — solid grasp on DSA and logic building.<br />
+• <strong>IoT & Embedded:</strong> Microcontrollers, real-world integration with sensors.<br /><br />
+🎨 <strong>Creative & Soft Skills</strong><br />
+• <strong>Poetry & Lyrics:</strong> I write and compose in Marathi, Hindi, Urdu, English.<br />
+• <strong>Branding, Leadership & Teamwork:</strong> As a Co-chair at Young Indians, I lead storytelling & collaboration.<br />
+• <strong>Photography & Editing:</strong> Turning moments into compelling stories.<br /><br />
+Ask me about <strong>projects</strong> or <strong>resume</strong> anytime!`;
+        break;
+
+      case "projects":
+        return res.json({ intent: "projects" });
+
+      case "resume":
+        reply = `📄 You can view my resume here:<br />
+<a href="https://drive.google.com/file/d/1y-z9gny5-hnLug9NwfdwpccsrylbLFLi/view?usp=drive_link" target="_blank" class="page-links">Darshan's CV</a>`;
+        break;
+
+      case "contact":
+        reply = `📧 Email: <a href="mailto:darshankhute2215@gmail.com">darshankhute2215@gmail.com</a><br/>
+🔗 LinkedIn: <a href="https://www.linkedin.com/in/darshan-khute-89220a258/" target="_blank">Connect on LinkedIn</a>`;
+        break;
+
+      default:
+        reply = "🤖 Hmm, I'm not sure how to answer that. Can you rephrase?";
+    }
+
+    return res.json({ intent, reply });
+  } catch (err) {
+    console.error("Gemini API Error:", err.response?.data || err.message);
+    return res.status(500).json({ error: "Gemini API failed" });
+  }
+});
+
+app.listen(5000, () => {
+  console.log("✅ Server running at http://localhost:5000");
+});
