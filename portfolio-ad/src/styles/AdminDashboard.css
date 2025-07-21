@@ -1,0 +1,287 @@
+:root {
+  /* Colors */
+  --color-bg: #292727;
+  --color-accent: #0e0e0e80;
+  /* --color-table: red; */
+  --color-border: #ccc;
+  --color-th-bg: #90a3f9a7;
+  --color-reply-bg: #f9f9f9;
+  /* text color */
+  --color-text:#cce0ed;;
+
+  /* Button Colors */
+  --btn-delete-bg: #e74c3c;
+  --btn-reply-bg: #3498db;
+  --btn-send-bg: #27ae60;
+  --btn-color: white;
+
+  /* Spacing */
+  --padding-base: 24px;
+  --padding-small: 10px;
+
+  /* Border Radius */
+  --radius-large: 30px;
+  --radius-small: 4px;
+
+  /* Font Sizes */
+  --font-large: 4rem;
+  --font-medium: 1.5rem;
+
+  /* Font */
+  --font-family: Arial, sans-serif;
+}
+body{
+  background-color: var(--color-bg);
+}
+/* Container */
+.dashboard-container {
+  padding: var(--padding-base);
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.welcome-greet {
+  background-color: var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+  padding: 1%;
+  border-radius: var(--radius-large);
+  color: var(--color-text);
+}
+.subline{
+  display: flex;
+  justify-content: space-between;
+
+}
+.hello-text {
+  font-size: var(--font-large);
+}
+
+.hello-msg {
+  font-size: var(--font-medium);
+}
+.subline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-refresh {
+  /* background-color: transparent; */
+  padding: 6px 12px;
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+  border: 1px solid var(--color-th-bg) ;
+}
+
+.table-holder {
+  padding: 1%;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-large);
+}
+
+/* Table */
+.response-table {
+  width: 100%;
+  border-collapse: separate;
+  background-color: var(--color-table);
+  border-radius: 10px;
+  color: var(--color-text);
+}
+.response-table th{
+  border-radius: 10px;
+  background-color: var(--color-th-bg);
+  padding: var(--padding-small);
+  text-align: left;
+}
+.response-table td{
+  padding: var(--padding-small);
+  text-align: left;
+}
+
+
+/* Buttons */
+.actionButtons{
+  display: flex;
+  justify-content:space-between;
+}
+.btn {
+  padding: 6px 12px;
+  /* margin-right: 8px; */
+  border: none;
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  color: var(--btn-color);
+}
+
+.btn-delete {
+  background-color: var(--btn-delete-bg);
+}
+
+.btn-reply {
+  background-color: var(--btn-reply-bg);
+}
+.sendbutton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-send {
+  background-color: var(--btn-send-bg);
+  margin-top: 10px;
+}
+
+/* Reply Box */
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.505);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Modal Box */
+.reply-modal {
+  width: 90%;
+  max-width: 500px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  border-radius: var(--radius-large);
+  padding: 24px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Close Button */
+.btn-close {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  background: transparent;
+  color: var(--color-text);
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.reply-box {
+  border: 1px solid var(--color-border);
+  padding: 16px;
+  background-color: var(--color-reply-bg);
+  border-radius: var(--radius-small);
+}
+
+.replytoText {
+  font-size: 25px;
+  margin-bottom: 3%;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: var(--padding-small);
+  margin-bottom: var(--padding-small);
+  border-radius: var(--radius-small);
+  border: 1px solid var(--color-border);
+ 
+}
+
+.textarea {
+  height: 100px;
+   resize: none;
+   overflow-x: scroll;
+   scrollbar-width: none;
+}
+/* Media Queries for Tablet and Mobile */
+@media (max-width: 1024px) {
+  .welcome-greet {
+  padding: 3%;
+}
+
+  .hello-text {
+    font-size: 2.5rem;
+  }
+
+  .hello-msg {
+    font-size: 1.2rem;
+  }
+
+  .reply-modal {
+    width: 95%;
+    padding: 16px;
+  }
+
+  .response-table th,
+  .response-table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 12px;
+  }
+
+  .response-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .table-holder {
+    padding: 0.5rem;
+  }
+
+  .hello-text {
+    font-size: 2rem;
+  }
+
+  .hello-msg {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+
+  .reply-modal {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .replytoText {
+    font-size: 1.1rem;
+  }
+
+  .btn-close {
+    font-size: 1.2rem;
+    top: 6px;
+    right: 10px;
+  }
+
+  .sendbutton {
+    justify-content: flex-end;
+  }
+}
