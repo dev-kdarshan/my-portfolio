@@ -11,8 +11,8 @@ const Login = ({ setAuthenticated }) => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post(`${apiBase}/login`, { email, password });
-      localStorage.setItem('adminToken', res.data.token);
+      const res = await axios.post(`${apiBase}/admin/login`, { email, password });
+      sessionStorage.setItem('adminToken', res.data.token);
       setAuthenticated(true);
     } catch (err) {
       alert('Invalid Credentials');

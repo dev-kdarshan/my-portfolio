@@ -80,6 +80,11 @@ body{
   transition: background-color 0.2s;
   border: 1px solid var(--color-th-bg) ;
 }
+  
+.btn-refresh:hover {
+ background-color: var(--color-th-bg);
+ border-color: var(--color-border);
+}
 
 .table-holder {
   padding: 1%;

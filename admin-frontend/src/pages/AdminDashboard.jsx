@@ -5,7 +5,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
 const apiBase = process.env.REACT_APP_API_BASE;
-const adminToken = localStorage.getItem('adminToken');
+const adminToken = sessionStorage.getItem('adminToken');
 
 
 const AdminDashboard = () => {
@@ -13,7 +13,6 @@ const AdminDashboard = () => {
   const [reply, setReply] = useState({ to: '', subject: '', message: '' });
   const [showModal, setShowModal] = useState(false); 
   useEffect(() => {
-
     fetchResponses();
   }, []);
 
