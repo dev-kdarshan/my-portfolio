@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "../styles/footer.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -119,13 +120,13 @@ gsap.fromTo(
         <div className="footer-nav" ref={navRef}>
           <div className="nav-column">
             <h4>Navigation</h4>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
+            <Link to="/">home</Link>
+            <Link to="/about">About</Link>
           </div>
           <div className="nav-column">
             <h4>Work</h4>
-            <a href="/projects">Projects</a>
-            <a href="/contact">Contact Me</a>
+            <Link to="/projects">Projects</Link>
+            <Link to="/contact">Contact Me</Link>
           </div>
           <div className="nav-column">
             <h4>Socials</h4>

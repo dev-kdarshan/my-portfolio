@@ -15,7 +15,6 @@ function Projects() {
     alert("This project is on the path of deployment")
 
   }
- 
 
     const leftArrowRef1 = useRef(null);
     const leftArrowRef2 = useRef(null);
@@ -197,7 +196,7 @@ function Projects() {
           <div className="left-text" ref={projectCTextRef}>
             <h2 className="project-title">Playzone</h2>
             <p className="project-subtitle">Multi-game web app (Snake, Chess, etc.)</p>
-            <button className="show-button"><a onClick={notDeployed}>Not deployed yet</a></button>
+           <button className="show-button"><a href="https://playzone-bydarshan.netlify.app/" target="_blank">show</a></button>
           </div>
         </div>
         <div className="project-img-right" ref={projectCImgRef}>

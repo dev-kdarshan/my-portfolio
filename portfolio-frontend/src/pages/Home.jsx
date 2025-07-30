@@ -254,7 +254,7 @@ function Home() {
                      </div>
                   </div>
                    <div className="mycv">
-                          <a href="https://drive.google.com/file/d/1eNGwRLltz7FrKPpDSzY-d99yORlOzWud/view?usp=sharing" download="Darshan CV" class="show-cv" id="showCv" target="_blank">show CV</a>
+                          <a href="https://drive.google.com/file/d/1XHEoyDIl7UJypE-Jn-2KLcJlctu7PJNZ/view?usp=sharing" download="Darshan CV" class="show-cv" id="showCv" target="_blank">show CV</a>
                     </div>
                   </div>
                   <div className="mid-end">
